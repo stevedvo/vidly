@@ -1,0 +1,21 @@
+﻿@model IList<Vidly.Models.Customer>
+
+@{
+	ViewBag.Title = "Customers";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+@if (Model.Count == 0)
+{
+	<p>No Customers to display</p>
+}
+else
+{
+	foreach (var customer in Model)
+	{
+		<p><a href="/Customer/Details/@customer.Id">@customer.Name</a></p>
+	}
+}
+
