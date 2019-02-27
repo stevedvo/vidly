@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vidly.DAL;
 using Vidly.Models;
 using Vidly.ViewModels;
 
@@ -10,6 +12,18 @@ namespace Vidly.Controllers
 {
 	public class MovieController : Controller
 	{
+		private VidlyContext _context = new VidlyContext();
+
+		public MovieController()
+		{
+			_context = new VidlyContext();
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			_context.Dispose();
+		}
+
 		// GET: Movie
 		public ActionResult Random()
 		{
@@ -44,31 +58,46 @@ namespace Vidly.Controllers
 
 		public ActionResult Index(int? pageIndex, string sortBy)
 		{
-			var movies = new List<Movie>
-			{
-				new Movie {Name = "Shrek!" },
-				new Movie {Name = "Wall-E" }
-			};
-
-			if (!pageIndex.HasValue)
-			{
-				pageIndex = 1;
-			}
-
-			if (string.IsNullOrWhiteSpace(sortBy))
-			{
-				sortBy = "Name";
-			}
-
-			//return Content(String.Format($"pageIndex={pageIndex}&sortBy={sortBy}"));
+			var movies = _context.Movies.Include(m => m.Genre).ToList();
 
 			return View(movies);
+
+			//if (!pageIndex.HasValue)
+			//{
+			//	pageIndex = 1;
+			//}
+
+			//if (string.IsNullOrWhiteSpace(sortBy))
+			//{
+			//	sortBy = "Name";
+			//}
+
+			////return Content(String.Format($"pageIndex={pageIndex}&sortBy={sortBy}"));
+
+			//return View(movies);
 		}
 
 		[Route("Movie/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]
 		public ActionResult ByReleaseDate(int year, int month)
 		{
 			return Content(year + "/" + month);
+		}
+
+		public ActionResult Details(int? id)
+		{
+			if (id == null)
+			{
+				return HttpNotFound();
+			}
+
+			var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+
+			if (movie == null)
+			{
+				return HttpNotFound();
+			}
+
+			return View(movie);
 		}
 	}
 }
