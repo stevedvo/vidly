@@ -1,0 +1,33 @@
+﻿@model Vidly.Models.Movie
+
+@{
+	ViewBag.Title = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+
+<div>
+	<ul>
+		@if (Model.GenreId != null)
+		{
+			<li>@Html.DisplayNameFor(model => model.Genre.Name): @Html.DisplayFor(model => model.Genre.Name)</li>
+		}
+
+		@if (Model.ReleaseDate != null)
+		{
+			<li>@Html.DisplayNameFor(model => Model.ReleaseDate): @Html.DisplayFor(model => model.ReleaseDate)</li>
+		}
+
+		@if (Model.DateAdded != null)
+		{
+			<li>@Html.DisplayNameFor(model => Model.DateAdded): @Html.DisplayFor(model => model.DateAdded)</li>
+		}
+
+		<li>@Html.DisplayNameFor(model => Model.StockQuantity): @Html.DisplayFor(model => model.StockQuantity)</li>
+	</ul>
+</div>
+<p>
+	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+	@Html.ActionLink("Back to List", "Index")
+</p>

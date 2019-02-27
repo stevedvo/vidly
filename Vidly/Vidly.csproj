@@ -175,8 +175,29 @@
     <Compile Include="Migrations\201902261452194_AddDataAnnotationsToCustomer.Designer.cs">
       <DependentUpon>201902261452194_AddDataAnnotationsToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902270811354_AddGenreEntity.cs" />
+    <Compile Include="Migrations\201902270811354_AddGenreEntity.Designer.cs">
+      <DependentUpon>201902270811354_AddGenreEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902270813275_PopulateGenreTable.cs" />
+    <Compile Include="Migrations\201902270813275_PopulateGenreTable.Designer.cs">
+      <DependentUpon>201902270813275_PopulateGenreTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902270822148_RenameGenrePropertyInMovie.cs" />
+    <Compile Include="Migrations\201902270822148_RenameGenrePropertyInMovie.Designer.cs">
+      <DependentUpon>201902270822148_RenameGenrePropertyInMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902270825325_CreateGenreIdPropertyOnMovie.cs" />
+    <Compile Include="Migrations\201902270825325_CreateGenreIdPropertyOnMovie.Designer.cs">
+      <DependentUpon>201902270825325_CreateGenreIdPropertyOnMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902270850159_AddDatesAndStockToMovie.cs" />
+    <Compile Include="Migrations\201902270850159_AddDatesAndStockToMovie.Designer.cs">
+      <DependentUpon>201902270850159_AddDatesAndStockToMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -223,6 +244,7 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Movie\Index.cshtml" />
+    <Content Include="Views\Movie\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -267,6 +289,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902261452194_AddDataAnnotationsToCustomer.resx">
       <DependentUpon>201902261452194_AddDataAnnotationsToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902270811354_AddGenreEntity.resx">
+      <DependentUpon>201902270811354_AddGenreEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902270813275_PopulateGenreTable.resx">
+      <DependentUpon>201902270813275_PopulateGenreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902270822148_RenameGenrePropertyInMovie.resx">
+      <DependentUpon>201902270822148_RenameGenrePropertyInMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902270825325_CreateGenreIdPropertyOnMovie.resx">
+      <DependentUpon>201902270825325_CreateGenreIdPropertyOnMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902270850159_AddDatesAndStockToMovie.resx">
+      <DependentUpon>201902270850159_AddDatesAndStockToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
