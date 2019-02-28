@@ -41,3 +41,18 @@ ul.navbar-nav li
 {
 	border: 2px solid red;
 }
+
+.modal-backdrop.fade.in
+{
+	opacity: 0.5;
+}
+
+.modal.fade.in
+{
+	opacity: 1;
+}
+
+.modal.fade.in .modal-dialog
+{
+	transform: none;
+}
