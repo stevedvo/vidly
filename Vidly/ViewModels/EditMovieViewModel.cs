@@ -27,7 +27,22 @@ namespace Vidly.ViewModels
 		public DateTime? ReleaseDate { get; set; }
 
 		[Required]
+		[Range(1, 20)]
 		[Display(Name = "Number in Stock")]
 		public int StockQuantity { get; set; }
+
+		public EditMovieViewModel()
+		{
+
+		}
+
+		public EditMovieViewModel(Movie movie)
+		{
+			Id = movie.Id;
+			Name = movie.Name;
+			ReleaseDate = movie.ReleaseDate;
+			GenreId = movie.GenreId;
+			StockQuantity = movie.StockQuantity;
+		}
 	}
 }

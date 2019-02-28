@@ -16,6 +16,7 @@ namespace Vidly.Models
 		[DataType(DataType.Date)]
 		[DisplayFormat(DataFormatString = "{0:dddd, MMMM d, yyyy}", ApplyFormatInEditMode = true)]
 		[Display(Name = "Release Date")]
+		[Required]
 		public DateTime? ReleaseDate { get; set; }
 
 		[DataType(DataType.Date)]
@@ -24,6 +25,8 @@ namespace Vidly.Models
 		public DateTime? DateAdded { get; set; }
 
 		[Display(Name = "Number in Stock")]
+		[Required]
+		[Range(1, 20)]
 		public int StockQuantity { get; set; }
 	}
 }

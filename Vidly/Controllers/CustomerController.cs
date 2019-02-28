@@ -44,7 +44,8 @@ namespace Vidly.Controllers
 			return View(customer);
 		}
 
-		public ActionResult New()
+		[ActionName("New")]
+		public ActionResult Create()
 		{
 			var viewModel = new CustomerFormViewModel
 			{
@@ -56,8 +57,20 @@ namespace Vidly.Controllers
 		}
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public ActionResult Create(Customer customer)
 		{
+			if (!ModelState.IsValid)
+			{
+				var viewModel = new CustomerFormViewModel
+				{
+					MembershipTypes = _context.MembershipTypes.ToList(),
+					Customer = customer
+				};
+
+				return View("New", viewModel);
+			}
+
 			_context.Customers.Add(customer);
 			_context.SaveChanges();
 
@@ -83,8 +96,20 @@ namespace Vidly.Controllers
 		}
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public ActionResult Edit(Customer customer)
 		{
+			if (!ModelState.IsValid)
+			{
+				var viewModel = new CustomerFormViewModel
+				{
+					MembershipTypes = _context.MembershipTypes.ToList(),
+					Customer = customer
+				};
+
+				return View("Edit", viewModel);
+			}
+
 			if (customer.Id == 0)
 			{
 				return HttpNotFound();

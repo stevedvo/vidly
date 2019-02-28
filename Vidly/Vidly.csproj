@@ -195,10 +195,19 @@
     <Compile Include="Migrations\201902270850159_AddDatesAndStockToMovie.Designer.cs">
       <DependentUpon>201902270850159_AddDatesAndStockToMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902281032443_AddRequiredDataAnnotationToMembershipType.cs" />
+    <Compile Include="Migrations\201902281032443_AddRequiredDataAnnotationToMembershipType.Designer.cs">
+      <DependentUpon>201902281032443_AddRequiredDataAnnotationToMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902281117120_UpdateMovieDataAnnotations.cs" />
+    <Compile Include="Migrations\201902281117120_UpdateMovieDataAnnotations.Designer.cs">
+      <DependentUpon>201902281117120_UpdateMovieDataAnnotations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CreateMovieViewModel.cs" />
@@ -311,6 +320,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902270850159_AddDatesAndStockToMovie.resx">
       <DependentUpon>201902270850159_AddDatesAndStockToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902281032443_AddRequiredDataAnnotationToMembershipType.resx">
+      <DependentUpon>201902281032443_AddRequiredDataAnnotationToMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902281117120_UpdateMovieDataAnnotations.resx">
+      <DependentUpon>201902281117120_UpdateMovieDataAnnotations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
