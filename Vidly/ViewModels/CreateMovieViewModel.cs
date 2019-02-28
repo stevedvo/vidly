@@ -14,7 +14,7 @@ namespace Vidly.ViewModels
 
 		[Required]
 		[Display(Name = "Genre")]
-		public int GenreId { get; set; }
+		public int? GenreId { get; set; }
 
 		public IEnumerable<Genre> Genres { get; set; }
 
@@ -22,10 +22,11 @@ namespace Vidly.ViewModels
 		[DataType(DataType.Date)]
 		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		[Display(Name = "Release Date")]
-		public DateTime ReleaseDate { get; set; }
+		public DateTime? ReleaseDate { get; set; }
 
 		[Required]
+		[Range(1, 20)]
 		[Display(Name = "Number in Stock")]
-		public int StockQuantity { get; set; }
+		public int? StockQuantity { get; set; }
 	}
 }

@@ -65,13 +65,8 @@ namespace Vidly.Controllers
 				return HttpNotFound();
 			}
 
-			EditMovieViewModel viewModel = new EditMovieViewModel
+			EditMovieViewModel viewModel = new EditMovieViewModel(movie)
 			{
-				Id = movie.Id,
-				Name = movie.Name,
-				ReleaseDate = movie.ReleaseDate,
-				GenreId = movie.GenreId,
-				StockQuantity = movie.StockQuantity,
 				Genres = _context.Genres.ToList()
 			};
 
@@ -79,8 +74,16 @@ namespace Vidly.Controllers
 		}
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public ActionResult Edit(EditMovieViewModel viewModel)
 		{
+			if (!ModelState.IsValid)
+			{
+				viewModel.Genres = _context.Genres.ToList();
+
+				return View("Edit", viewModel);
+			}
+
 			Movie movie = _context.Movies.SingleOrDefault(m => m.Id == viewModel.Id);
 
 			if (movie == null)
@@ -144,23 +147,32 @@ namespace Vidly.Controllers
 
 		public ActionResult Create()
 		{
-			var viewModel = new CreateMovieViewModel();
-
-			viewModel.Genres = _context.Genres.ToList();
+			var viewModel = new CreateMovieViewModel
+			{
+				Genres = _context.Genres.ToList()
+			};
 
 			return View(viewModel);
 		}
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public ActionResult Create(CreateMovieViewModel viewModel)
 		{
+			if (!ModelState.IsValid)
+			{
+				viewModel.Genres = _context.Genres.ToList();
+
+				return View("Create", viewModel);
+			}
+
 			Movie movie = new Movie
 			{
 				Name = viewModel.Name,
 				GenreId = viewModel.GenreId,
 				ReleaseDate = viewModel.ReleaseDate,
 				DateAdded = DateTime.Now,
-				StockQuantity = viewModel.StockQuantity
+				StockQuantity = viewModel.StockQuantity ?? 0
 			};
 
 			_context.Movies.Add(movie);
