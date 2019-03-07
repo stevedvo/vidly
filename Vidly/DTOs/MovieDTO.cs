@@ -20,5 +20,7 @@ namespace Vidly.DTOs
 		[Required]
 		[Range(1, 20)]
 		public int StockQuantity { get; set; }
+
+		public GenreDTO Genre { get; set; }
 	}
 }

@@ -101,25 +101,9 @@ namespace Vidly.Controllers
 			return RedirectToAction("Index", "Movie");
 		}
 
-		public ActionResult Index(int? pageIndex, string sortBy)
+		public ActionResult Index()
 		{
-			var movies = _context.Movies.Include(m => m.Genre).ToList();
-
-			return View(movies);
-
-			//if (!pageIndex.HasValue)
-			//{
-			//	pageIndex = 1;
-			//}
-
-			//if (string.IsNullOrWhiteSpace(sortBy))
-			//{
-			//	sortBy = "Name";
-			//}
-
-			////return Content(String.Format($"pageIndex={pageIndex}&sortBy={sortBy}"));
-
-			//return View(movies);
+			return View();
 		}
 
 		[Route("Movie/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]
