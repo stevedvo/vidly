@@ -56,3 +56,62 @@ ul.navbar-nav li
 {
 	transform: none;
 }
+
+div[class^="col-"]
+{
+	float: left;
+}
+
+.dataTables_wrapper
+{
+	display: block;
+}
+
+.dataTables_wrapper label
+{
+	display: block;
+}
+
+.dataTables_wrapper#customers_wrapper #customers_filter label
+{
+	text-align: right;
+}
+
+.dataTables_wrapper ul.pagination
+{
+	display: inline;
+}
+
+.dataTables_wrapper ul.pagination li.paginate_button
+{
+	display: inline-block;
+}
+
+.dataTables_wrapper ul.pagination li.paginate_button a
+{
+	display: inline-block;
+	padding: 6px 12px;
+	font-size: 12px;
+	line-height: 18px;
+	border-radius: 4px;
+	color: #fff;
+	background-color: #158CBA;
+	border-style: solid;
+	border-width: 0px 1px 4px 1px;
+	border-color: #127ba3;
+	transition: all 0.15s ease-in-out;
+}
+
+.dataTables_wrapper ul.pagination li.paginate_button:not(.disabled) a:hover
+{
+	background-color: #117298;
+	border-color: #106a8c;
+}
+
+.dataTables_wrapper ul.pagination li.paginate_button.disabled a
+{
+	color: #333;
+	background-color: #eee;
+	border-color: #aaa;
+	cursor: not-allowed;
+}
