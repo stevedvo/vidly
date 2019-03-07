@@ -57,14 +57,14 @@ ul.navbar-nav li
 	transform: none;
 }
 
-div[class^="col-"]
-{
-	float: left;
-}
-
 .dataTables_wrapper
 {
 	display: block;
+}
+
+.dataTables_wrapper div[class^="col-"]
+{
+	float: left;
 }
 
 .dataTables_wrapper label
@@ -72,7 +72,8 @@ div[class^="col-"]
 	display: block;
 }
 
-.dataTables_wrapper#customers_wrapper #customers_filter label
+.dataTables_wrapper#customers_wrapper #customers_filter label,
+.dataTables_wrapper#movies_wrapper #movies_filter label
 {
 	text-align: right;
 }

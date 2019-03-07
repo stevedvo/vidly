@@ -9,34 +9,71 @@
 
 <a class="btn btn-primary" href="/Movie/Create/">Create New</a>
 
-@if (!Model.Any())
-{
-	<p>We don't have any movies yet.</p>
-}
-else
-{
-	<table class="table table-bordered table-hover">
-		<thead>
-			<tr>
-				<th>Movie</th>
-				<th>Genre</th>
-			</tr>
-		</thead>
-		<tbody>
+<table id="movies" class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Movie</th>
+			<th>Genre</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
 
-			@foreach (var movie in Model)
+@section scripts
+{
+	<script>
+		$(document).ready(function()
+		{
+			var table = $("#movies").DataTable(
 			{
-				<tr>
-					<td><a href="/Movie/Details/@movie.Id">@movie.Name</a></td>
-
-					@if (movie.GenreId != null)
+				ajax :
+				{
+					url     : "/api/movies",
+					dataSrc : ""
+				},
+				columns :
+				[
 					{
-						<td>@movie.Genre.Name</td>
+						data   : "name",
+						render : function (data, type, movie)
+						{
+							return "<a href='/Movie/Edit/" + movie.id + "'>" + movie.name + "</a>";
+						}
+					},
+					{
+						data   : "genre.name"
+					},
+					{
+						data   : "id",
+						render : function (data)
+						{
+							return "<button class='btn-link js-delete' data-movie-id='" + data + "'>Delete</button>";
+						}
 					}
-				</tr>
-			}
+				]
+			});
 
-		</tbody>
-	</table>
+			$("#movies").on("click", ".js-delete", function ()
+			{
+				var $this = $(this);
+
+				bootbox.confirm("Are you sure you want to delete this Movie?", function(result)
+				{
+					if (result)
+					{
+						$.ajax(
+						{
+							url     : "/api/movies/" + $this.attr("data-movie-id"),
+							method  : "DELETE",
+							success : function()
+							{
+								table.row($this.closest("tr")).remove().draw();
+							}
+						});
+					}
+				});
+			});
+		});
+	</script>
 }
-
