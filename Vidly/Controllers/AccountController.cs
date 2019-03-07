@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Vidly.DAL;
 using Vidly.Models;
 
 namespace Vidly.Controllers
@@ -155,7 +157,9 @@ namespace Vidly.Controllers
 					DrivingLicense = model.DrivingLicense,
 					Phone = model.Phone
 				};
+
 				var result = await UserManager.CreateAsync(user, model.Password);
+
 				if (result.Succeeded)
 				{
 					await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
