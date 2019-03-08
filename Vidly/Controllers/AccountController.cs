@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.DAL;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {

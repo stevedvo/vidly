@@ -51,6 +51,7 @@ namespace Vidly.Controllers
 			return View(viewModel);
 		}
 
+		[Authorize(Roles = RoleName.CanManageMovies)]
 		public ActionResult Edit(int? id)
 		{
 			if (id == null)
@@ -75,6 +76,7 @@ namespace Vidly.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[Authorize(Roles = RoleName.CanManageMovies)]
 		public ActionResult Edit(EditMovieViewModel viewModel)
 		{
 			if (!ModelState.IsValid)
@@ -147,6 +149,7 @@ namespace Vidly.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[Authorize(Roles = RoleName.CanManageMovies)]
 		public ActionResult Create(CreateMovieViewModel viewModel)
 		{
 			if (!ModelState.IsValid)
