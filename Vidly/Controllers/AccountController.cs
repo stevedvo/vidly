@@ -370,17 +370,22 @@ namespace Vidly.Controllers
 			{
 				// Get the information about the user from the external login provider
 				var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+
 				if (info == null)
 				{
 					return View("ExternalLoginFailure");
 				}
+
 				var user = new ApplicationUser
 				{
 					UserName = model.Email,
 					Email = model.Email,
-					DrivingLicense = model.DrivingLicense
+					DrivingLicense = model.DrivingLicense,
+					Phone = model.Phone
 				};
+
 				var result = await UserManager.CreateAsync(user);
+
 				if (result.Succeeded)
 				{
 					result = await UserManager.AddLoginAsync(user.Id, info.Login);
@@ -390,6 +395,7 @@ namespace Vidly.Controllers
 						return RedirectToLocal(returnUrl);
 					}
 				}
+
 				AddErrors(result);
 			}
 
