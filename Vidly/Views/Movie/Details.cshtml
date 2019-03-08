@@ -16,18 +16,15 @@
 
 		@if (Model.ReleaseDate != null)
 		{
-			<li>@Html.DisplayNameFor(model => Model.ReleaseDate): @Html.DisplayFor(model => model.ReleaseDate)</li>
+			<li>@Html.DisplayNameFor(model => model.ReleaseDate): @Html.DisplayFor(model => model.ReleaseDate)</li>
 		}
 
 		@if (Model.DateAdded != null)
 		{
-			<li>@Html.DisplayNameFor(model => Model.DateAdded): @Html.DisplayFor(model => model.DateAdded)</li>
+			<li>@Html.DisplayNameFor(model => model.DateAdded): @Html.DisplayFor(model => model.DateAdded)</li>
 		}
 
-		<li>@Html.DisplayNameFor(model => Model.StockQuantity): @Html.DisplayFor(model => model.StockQuantity)</li>
+		<li>@Html.DisplayNameFor(model => model.StockQuantity): @Html.DisplayFor(model => model.StockQuantity)</li>
 	</ul>
 </div>
-<p>
-	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-	@Html.ActionLink("Back to List", "Index")
-</p>
+<p>@Html.ActionLink("Back to List", "Index")</p>

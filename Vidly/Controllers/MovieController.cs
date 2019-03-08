@@ -51,6 +51,7 @@ namespace Vidly.Controllers
 			return View(viewModel);
 		}
 
+		[Authorize(Roles = RoleName.CanManageMovies)]
 		public ActionResult Edit(int? id)
 		{
 			if (id == null)
@@ -75,6 +76,7 @@ namespace Vidly.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[Authorize(Roles = RoleName.CanManageMovies)]
 		public ActionResult Edit(EditMovieViewModel viewModel)
 		{
 			if (!ModelState.IsValid)
@@ -103,7 +105,12 @@ namespace Vidly.Controllers
 
 		public ActionResult Index()
 		{
-			return View();
+			if (User.IsInRole(RoleName.CanManageMovies))
+			{
+				return View("List");
+			}
+
+			return View("ListReadOnly");
 		}
 
 		[Route("Movie/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]
@@ -129,6 +136,7 @@ namespace Vidly.Controllers
 			return View(movie);
 		}
 
+		[Authorize(Roles = RoleName.CanManageMovies)]
 		public ActionResult Create()
 		{
 			var viewModel = new CreateMovieViewModel
@@ -141,6 +149,7 @@ namespace Vidly.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[Authorize(Roles = RoleName.CanManageMovies)]
 		public ActionResult Create(CreateMovieViewModel viewModel)
 		{
 			if (!ModelState.IsValid)
