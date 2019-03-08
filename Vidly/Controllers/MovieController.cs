@@ -103,7 +103,12 @@ namespace Vidly.Controllers
 
 		public ActionResult Index()
 		{
-			return View();
+			if (User.IsInRole(RoleName.CanManageMovies))
+			{
+				return View("List");
+			}
+
+			return View("ListReadOnly");
 		}
 
 		[Route("Movie/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]
@@ -129,6 +134,7 @@ namespace Vidly.Controllers
 			return View(movie);
 		}
 
+		[Authorize(Roles = RoleName.CanManageMovies)]
 		public ActionResult Create()
 		{
 			var viewModel = new CreateMovieViewModel
