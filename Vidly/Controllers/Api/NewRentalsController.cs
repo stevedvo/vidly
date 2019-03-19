@@ -42,17 +42,18 @@ namespace Vidly.Controllers.Api
 
 			var movies = _context.Movies.Where(m => newRentalDto.MovieIds.Contains(m.Id));
 
-			var newRental = new Rental
-			{
-				Customer = customer,
-				DateRented = DateTime.Now
-			};
-
 			foreach (var movie in movies)
 			{
-				newRental.Movie = movie;
+				var newRental = new Rental
+				{
+					Customer = customer,
+					Movie = movie,
+					DateRented = DateTime.Now
+				};
 
 				_context.Rentals.Add(newRental);
+
+				movie.StockAvailable--;
 			}
 
 			_context.SaveChanges();

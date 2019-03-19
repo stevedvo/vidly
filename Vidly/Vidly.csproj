@@ -231,6 +231,10 @@
     <Compile Include="Migrations\201903191234239_AddRentals.Designer.cs">
       <DependentUpon>201903191234239_AddRentals.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903191534338_AddStockAvailableToMovie.cs" />
+    <Compile Include="Migrations\201903191534338_AddStockAvailableToMovie.Designer.cs">
+      <DependentUpon>201903191534338_AddStockAvailableToMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -533,6 +537,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903191234239_AddRentals.resx">
       <DependentUpon>201903191234239_AddRentals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903191534338_AddStockAvailableToMovie.resx">
+      <DependentUpon>201903191534338_AddStockAvailableToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
