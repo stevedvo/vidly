@@ -21,11 +21,43 @@ namespace Vidly.Controllers.Api
 			_context = new VidlyContext();
 		}
 
-		// POST: /api/rentals
+		// GET: /api/newrentals
+		public IHttpActionResult GetRentals()
+		{
+			var rentals = _context.Rentals.ToList();
+
+			return Ok(rentals);
+		}
+
+		// POST: /api/newrentals
 		[HttpPost]
 		public IHttpActionResult CreateNewRentals(NewRentalDTO newRentalDto)
 		{
-			throw new NotImplementedException();
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+
+			var customer = _context.Customers.Single(c => c.Id == newRentalDto.CustomerId);
+
+			var movies = _context.Movies.Where(m => newRentalDto.MovieIds.Contains(m.Id));
+
+			var newRental = new Rental
+			{
+				Customer = customer,
+				DateRented = DateTime.Now
+			};
+
+			foreach (var movie in movies)
+			{
+				newRental.Movie = movie;
+
+				_context.Rentals.Add(newRental);
+			}
+
+			_context.SaveChanges();
+
+			return Ok();
 		}
 	}
 }
