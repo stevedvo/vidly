@@ -10,14 +10,14 @@
 	<div class="form-group">
 		<label>Customer</label>
 		<div class="tt-container">
-			<input id="customer" data-rule-validCustomer="true" autocomplete="off" required type="text" value="" class="form-control" />
+			<input id="customer" name="customer" data-rule-validCustomer="true" autocomplete="off" required type="text" value="" class="form-control" />
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label>Movie</label>
 		<div class="tt-container">
-			<input id="movie" data-rule-validMovies="true" autocomplete="off" required type="text" value="" class="form-control" />
+			<input id="movie" name="movie" data-rule-atLeastOneMovie="true" autocomplete="off" type="text" value="" class="form-control" />
 		</div>
 	</div>
 
@@ -101,17 +101,15 @@
 				return viewModel.customerId && viewModel.customerId !== 0;
 			}, 'Please select a valid Customer.');
 
-			$.validator.addMethod("validMovies", function ()
+			$.validator.addMethod("atLeastOneMovie", function ()
 			{
-				return viewModel.movieId && viewModel.movieId !== 0;
-			}, 'Please select a valid Movie.');
+				return viewModel.movieIds.length > 0;
+			}, 'Please select at least one Movie.');
 
 			$("#newRental").validate(
 			{
-				submitHandler : function(frm, e)
+				submitHandler : function()
 				{
-					e.preventDefault();
-
 					var moviesList = $("ul#movies");
 
 					if (moviesList.children("li").length == 0)
@@ -133,6 +131,8 @@
 							toastr.error("Something went wrong!");
 						});
 					}
+
+					return false;
 				}
 			});
 		});
