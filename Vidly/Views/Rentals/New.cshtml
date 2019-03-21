@@ -126,6 +126,15 @@
 						})
 						.done(function () {
 							toastr.success("Rentals successfully recorded.");
+
+							$("#customer").typeahead("val", "");
+							$("#movie").typeahead("val", "");
+							$("#movies").empty();
+
+							viewModel =
+							{
+								movieIds: []
+							};
 						})
 						.fail(function () {
 							toastr.error("Something went wrong!");
