@@ -10,7 +10,7 @@
 	<div class="form-group">
 		<label>Customer</label>
 		<div class="tt-container">
-			<input id="customer" type="text" value="" class="form-control" />
+			<input id="customer" data-rule-validCustomer="true" required type="text" value="" class="form-control" />
 		</div>
 	</div>
 
@@ -34,6 +34,7 @@
 
 @section scripts
 {
+	@Scripts.Render("~/bundles/jqueryval");
 	<script>
 		$(document).ready(function()
 		{
@@ -92,26 +93,34 @@
 				$("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
 				$("#movie").typeahead("val", "");
 				viewModel.movieIds.push(movie.id);
-			});
-
-			$("#newRental").submit(function (e)
-			{
-				e.preventDefault();
-
-				$.ajax(
-				{
-					url    : "/api/newRentals",
-					method : "post",
-					data   : viewModel
-				})
-				.done(function ()
-				{
-					toastr.success("Rentals successfully recorded.");
-				})
-				.fail(function ()
-				{
-					toastr.error("Something went wrong!");
 				});
+
+			$.validator.addMethod("validCustomer", function ()
+			{
+				return viewModel.customerId && viewModel.customerId !== 0;
+			}, 'Please select a valid customer.');
+
+			$("#newRental").validate(
+			{
+				submitHandler : function()
+				{
+					e.preventDefault();
+
+					$.ajax(
+					{
+						url    : "/api/newRentals",
+						method : "post",
+						data   : viewModel
+					})
+					.done(function ()
+					{
+						toastr.success("Rentals successfully recorded.");
+					})
+					.fail(function ()
+					{
+						toastr.error("Something went wrong!");
+					});
+				}
 			});
 		});
 	</script>

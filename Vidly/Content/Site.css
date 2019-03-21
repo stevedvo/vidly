@@ -37,7 +37,14 @@ ul.navbar-nav li
 	padding: 0px 15px;
 }
 
-.input-validation-error
+.field-validation-error,
+label.error
+{
+	color: red;
+}
+
+.input-validation-error,
+input.error
 {
 	border: 2px solid red;
 }
