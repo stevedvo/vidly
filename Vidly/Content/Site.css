@@ -38,13 +38,15 @@ ul.navbar-nav li
 }
 
 .field-validation-error,
-label.error
+label.error,
+p.error
 {
 	color: red;
 }
 
 .input-validation-error,
-input.error
+input.error,
+p.error
 {
 	border: 2px solid red;
 }
