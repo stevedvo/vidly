@@ -138,7 +138,8 @@ namespace Vidly.Controllers
 				GenreId = viewModel.GenreId,
 				ReleaseDate = viewModel.ReleaseDate,
 				DateAdded = DateTime.Now,
-				StockQuantity = viewModel.StockQuantity ?? 0
+				StockQuantity = viewModel.StockQuantity ?? 0,
+				StockAvailable = viewModel.StockQuantity ?? 0
 			};
 
 			_context.Movies.Add(movie);
