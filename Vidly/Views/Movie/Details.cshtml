@@ -46,7 +46,7 @@
 				if (rental.DateReturned == null)
 				{
 					<tr>
-						<td>@rental.Customer.Name</td>
+						<td><a href="/Customer/Edit/@rental.CustomerId">@rental.Customer.Name</a></td>
 						<td>@rental.DateRented.ToString()</td>
 					</tr>
 				}
