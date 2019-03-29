@@ -31,10 +31,37 @@
 
 @if (Model.Rentals.Count > 0)
 {
-	foreach (var rental in Model.Rentals)
-	{
-		<p>@rental.Customer.Name</p>
-	}
+	<h3>Rentals</h3>
+
+	<table id="rentals" class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>Customer</th>
+				<th>Date Rented</th>
+				<th>Date Returned</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var rental in Model.Rentals)
+			{
+				<tr>
+					<td>@rental.Customer.Name</td>
+					<td>@rental.DateRented.ToString()</td>
+					<td>@rental.DateReturned.ToString()</td>
+				</tr>
+			}
+		</tbody>
+	</table>
 }
 
 <p>@Html.ActionLink("Back to List", "Index")</p>
+
+@section scripts
+{
+	<script>
+		$(document).ready(function()
+		{
+			$("#rentals").DataTable();
+		});
+	</script>
+}
