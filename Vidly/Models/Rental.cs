@@ -18,5 +18,7 @@ namespace Vidly.Models
 
 		public DateTime DateRented { get; set; }
 		public DateTime? DateReturned { get; set; }
+		public int CustomerId { get; set; } 
+		public int MovieId { get; set; } 
 	}
 }

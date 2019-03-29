@@ -99,11 +99,19 @@ namespace Vidly.Controllers
 				return HttpNotFound();
 			}
 
-			var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+			var movie = _context.Movies.Include(m => m.Genre).Include(m => m.Rentals).SingleOrDefault(m => m.Id == id);
 
 			if (movie == null)
 			{
 				return HttpNotFound();
+			}
+
+			if (movie.Rentals.Count > 0)
+			{
+				foreach (var rental in movie.Rentals)
+				{
+					rental.Customer = _context.Customers.SingleOrDefault(c => c.Id == rental.CustomerId);
+				}
 			}
 
 			return View(movie);

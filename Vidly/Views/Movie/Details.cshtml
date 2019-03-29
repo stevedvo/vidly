@@ -25,6 +25,16 @@
 		}
 
 		<li>@Html.DisplayNameFor(model => model.StockQuantity): @Html.DisplayFor(model => model.StockQuantity)</li>
+		<li>@Html.DisplayNameFor(model => model.StockAvailable): @Html.DisplayFor(model => model.StockAvailable)</li>
 	</ul>
 </div>
+
+@if (Model.Rentals.Count > 0)
+{
+	foreach (var rental in Model.Rentals)
+	{
+		<p>@rental.Customer.Name</p>
+	}
+}
+
 <p>@Html.ActionLink("Back to List", "Index")</p>
