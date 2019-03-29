@@ -24,14 +24,16 @@ namespace Vidly.Models
 		[Display(Name = "Date Added")]
 		public DateTime? DateAdded { get; set; }
 
-		[Display(Name = "Number in Stock")]
+		[Display(Name = "Stock Quantity")]
 		[Required]
 		[Range(1, 20)]
 		public int StockQuantity { get; set; }
 
-		[Display(Name = "Number Available")]
+		[Display(Name = "Stock Available")]
 		[Required]
 		[Range(0, 20)]
 		public int StockAvailable { get; set; }
+
+		public IList<Rental> Rentals { get; set; }
 	}
 }

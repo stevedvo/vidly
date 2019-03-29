@@ -28,8 +28,15 @@ namespace Vidly.ViewModels
 
 		[Required]
 		[Range(1, 20)]
-		[Display(Name = "Number in Stock")]
+		[Display(Name = "Stock Total")]
 		public int StockQuantity { get; set; }
+
+		[Display(Name = "Stock Available")]
+		[Required]
+		[Range(0, 20)]
+		public int StockAvailable { get; set; }
+
+		public IList<Rental> Rentals { get; set; }
 
 		public EditMovieViewModel()
 		{
@@ -43,6 +50,8 @@ namespace Vidly.ViewModels
 			ReleaseDate = movie.ReleaseDate;
 			GenreId = movie.GenreId;
 			StockQuantity = movie.StockQuantity;
+			StockAvailable = movie.StockAvailable;
+			Rentals = movie.Rentals;
 		}
 	}
 }

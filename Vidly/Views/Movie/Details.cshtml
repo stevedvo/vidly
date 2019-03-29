@@ -25,6 +25,44 @@
 		}
 
 		<li>@Html.DisplayNameFor(model => model.StockQuantity): @Html.DisplayFor(model => model.StockQuantity)</li>
+		<li>@Html.DisplayNameFor(model => model.StockAvailable): @Html.DisplayFor(model => model.StockAvailable)</li>
 	</ul>
 </div>
+
+@if (Model.Rentals.Count > 0)
+{
+	<h3>Rentals</h3>
+
+	<table id="rentals" class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>Customer</th>
+				<th>Date Rented</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var rental in Model.Rentals)
+			{
+				if (rental.DateReturned == null)
+				{
+					<tr>
+						<td>@rental.Customer.Name</td>
+						<td>@rental.DateRented.ToString()</td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
+}
+
 <p>@Html.ActionLink("Back to List", "Index")</p>
+
+@section scripts
+{
+	<script>
+		$(document).ready(function()
+		{
+			$("#rentals").DataTable();
+		});
+	</script>
+}

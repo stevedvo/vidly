@@ -32,7 +32,7 @@ namespace Vidly.Controllers
 				return HttpNotFound();
 			}
 
-			Movie movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+			Movie movie = _context.Movies.Include(m => m.Rentals.Select(r => r.Customer)).SingleOrDefault(m => m.Id == id);
 
 			if (movie == null)
 			{
@@ -99,7 +99,7 @@ namespace Vidly.Controllers
 				return HttpNotFound();
 			}
 
-			var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+			var movie = _context.Movies.Include(m => m.Genre).Include(m => m.Rentals.Select(r => r.Customer)).SingleOrDefault(m => m.Id == id);
 
 			if (movie == null)
 			{
@@ -138,7 +138,8 @@ namespace Vidly.Controllers
 				GenreId = viewModel.GenreId,
 				ReleaseDate = viewModel.ReleaseDate,
 				DateAdded = DateTime.Now,
-				StockQuantity = viewModel.StockQuantity ?? 0
+				StockQuantity = viewModel.StockQuantity ?? 0,
+				StockAvailable = viewModel.StockQuantity ?? 0
 			};
 
 			_context.Movies.Add(movie);
