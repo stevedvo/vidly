@@ -36,6 +36,8 @@ namespace Vidly.ViewModels
 		[Range(0, 20)]
 		public int StockAvailable { get; set; }
 
+		public List<Rental> Rentals { get; set; }
+
 		public EditMovieViewModel()
 		{
 
@@ -49,6 +51,7 @@ namespace Vidly.ViewModels
 			GenreId = movie.GenreId;
 			StockQuantity = movie.StockQuantity;
 			StockAvailable = movie.StockAvailable;
+			Rentals = movie.Rentals;
 		}
 	}
 }

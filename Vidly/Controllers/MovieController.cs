@@ -32,7 +32,7 @@ namespace Vidly.Controllers
 				return HttpNotFound();
 			}
 
-			Movie movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+			Movie movie = _context.Movies.Include(m => m.Rentals.Select(r => r.Customer)).SingleOrDefault(m => m.Id == id);
 
 			if (movie == null)
 			{
