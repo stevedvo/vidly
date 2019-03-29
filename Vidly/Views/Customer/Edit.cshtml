@@ -58,6 +58,40 @@
 	</div>
 }
 
+@if (Model.Customer.Rentals.Count > 0)
+{
+	<h3>Rentals</h3>
+
+	<table id="rentals" class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>Movie</th>
+				<th>Date Rented</th>
+				<th>Date Returned</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var rental in Model.Customer.Rentals)
+			{
+				<tr data-rental_id="@rental.Id">
+					<td>@rental.Movie.Name</td>
+					<td>@rental.DateRented.ToString()</td>
+					<td>
+						@if (rental.DateReturned == null)
+						{
+							<button class="btn btn-primary js-mark-movie-as-returned">Mark Returned</button>
+						}
+						else
+						{
+							@rental.DateReturned.ToString()
+						}
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
 <div>
 	@Html.ActionLink("Back to List", "Index")
 </div>
@@ -65,4 +99,31 @@
 @section scripts
 {
 	@Scripts.Render("~/bundles/jqueryval")
+	<script>
+		$(document).ready(function()
+		{
+			$("#rentals").DataTable();
+
+			$("button.js-mark-movie-as-returned").click(function(e)
+			{
+				e.preventDefault();
+				$this = $(this);
+				parent = $this.closest("tr");
+				rentalID = parseInt(parent.data("rental_id"));
+
+				$.ajax(
+				{
+					type : 'PUT',
+					url  : '/api/rentals/' + rentalID
+				}).done(function(dateString)
+				{
+					$this.closest("td").html(dateString);
+				}).fail(function(data)
+				{
+					console.log("fail");
+					console.log(data);
+				});
+			});
+		});
+	</script>
 }
