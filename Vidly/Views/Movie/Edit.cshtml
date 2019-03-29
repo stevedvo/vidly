@@ -72,17 +72,18 @@
 			<tr>
 				<th>Customer</th>
 				<th>Date Rented</th>
-				<th>Date Returned</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach (var rental in Model.Rentals)
 			{
-				<tr>
-					<td>@rental.Customer.Name</td>
-					<td>@rental.DateRented.ToString()</td>
-					<td>@rental.DateReturned.ToString()</td>
-				</tr>
+				if (rental.DateReturned == null)
+				{
+					<tr>
+						<td>@rental.Customer.Name</td>
+						<td>@rental.DateRented.ToString()</td>
+					</tr>
+				}
 			}
 		</tbody>
 	</table>

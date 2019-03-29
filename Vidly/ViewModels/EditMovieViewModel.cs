@@ -36,7 +36,7 @@ namespace Vidly.ViewModels
 		[Range(0, 20)]
 		public int StockAvailable { get; set; }
 
-		public List<Rental> Rentals { get; set; }
+		public IList<Rental> Rentals { get; set; }
 
 		public EditMovieViewModel()
 		{
