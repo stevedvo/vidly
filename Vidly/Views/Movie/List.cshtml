@@ -74,9 +74,16 @@
 						{
 							url     : "/api/movies/" + $this.attr("data-movie-id"),
 							method  : "DELETE",
-							success : function()
+							success : function(result)
 							{
-								table.row($this.closest("tr")).remove().draw();
+								if (result)
+								{
+									table.row($this.closest("tr")).remove().draw();
+								}
+								else
+								{
+									bootbox.alert("Unable to delete this Movie - are there outstanding rentals?");
+								}
 							}
 						});
 					}

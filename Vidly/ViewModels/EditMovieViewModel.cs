@@ -38,6 +38,8 @@ namespace Vidly.ViewModels
 
 		public IList<Rental> Rentals { get; set; }
 
+		public bool Deleted { get; set; }
+
 		public EditMovieViewModel()
 		{
 
@@ -52,6 +54,7 @@ namespace Vidly.ViewModels
 			StockQuantity = movie.StockQuantity;
 			StockAvailable = movie.StockAvailable;
 			Rentals = movie.Rentals;
+			Deleted = movie.Deleted;
 		}
 	}
 }
