@@ -214,6 +214,7 @@
     <Compile Include="DTOs\MembershipTypeDTO.cs" />
     <Compile Include="DTOs\MovieDTO.cs" />
     <Compile Include="DTOs\NewRentalDTO.cs" />
+    <Compile Include="DTOs\RentalDTO.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -253,6 +254,10 @@
     <Compile Include="Migrations\201904021035331_AddDeletedPropertyToMovie.cs" />
     <Compile Include="Migrations\201904021035331_AddDeletedPropertyToMovie.Designer.cs">
       <DependentUpon>201904021035331_AddDeletedPropertyToMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904021212142_AddDeletedPropertyToCustomer.cs" />
+    <Compile Include="Migrations\201904021212142_AddDeletedPropertyToCustomer.Designer.cs">
+      <DependentUpon>201904021212142_AddDeletedPropertyToCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -620,6 +625,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904021035331_AddDeletedPropertyToMovie.resx">
       <DependentUpon>201904021035331_AddDeletedPropertyToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021212142_AddDeletedPropertyToCustomer.resx">
+      <DependentUpon>201904021212142_AddDeletedPropertyToCustomer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

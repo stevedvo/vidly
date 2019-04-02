@@ -24,7 +24,7 @@ namespace Vidly.Controllers.Api
 		//GET /api/customers
 		public IHttpActionResult GetCustomers(string query = null)
 		{
-			var customersQuery = _context.Customers.Include(c => c.MembershipType);
+			var customersQuery = _context.Customers.Include(c => c.MembershipType).Include(c => c.Rentals).Where(c => c.Deleted == false);
 
 			if (!String.IsNullOrWhiteSpace(query))
 			{
@@ -91,17 +91,38 @@ namespace Vidly.Controllers.Api
 
 		//DELETE /api/customers/1
 		[HttpDelete]
-		public void DeleteCustomer(int id)
+		public bool DeleteCustomer(int id)
 		{
-			var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+			var customer = _context.Customers.Include(c => c.Rentals).SingleOrDefault(c => c.Id == id);
 
 			if (customer == null)
 			{
 				throw new HttpResponseException(HttpStatusCode.NotFound);
 			}
 
-			_context.Customers.Remove(customer);
-			_context.SaveChanges();
+			bool canDeleteCustomer = true;
+
+			if (customer.Rentals.Count > 0)
+			{
+				foreach (var rental in customer.Rentals)
+				{
+					if (canDeleteCustomer)
+					{
+						if (rental.DateReturned == null)
+						{
+							canDeleteCustomer = false;
+						}
+					}
+				}
+			}
+
+			if (canDeleteCustomer)
+			{
+				customer.Deleted = true;
+				_context.SaveChanges();
+			}
+
+			return canDeleteCustomer;
 		}
 	}
 }
