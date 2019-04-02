@@ -24,7 +24,7 @@ namespace Vidly.Controllers.Api
 		//GET /api/movies
 		public IHttpActionResult GetMovies(string query = null, bool? allstock = true)
 		{
-			var moviesQuery = _context.Movies.Include(m => m.Genre);
+			var moviesQuery = _context.Movies.Include(m => m.Genre).Where(m => m.Deleted == false);
 
 			if (allstock == false)
 			{
@@ -102,17 +102,38 @@ namespace Vidly.Controllers.Api
 		//DELETE /api/movies/1
 		[HttpDelete]
 		[Authorize(Roles = RoleName.CanManageMovies)]
-		public void DeleteMovie(int id)
+		public bool DeleteMovie(int id)
 		{
-			var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+			var movie = _context.Movies.Include(m => m.Rentals).SingleOrDefault(m => m.Id == id);
 
 			if (movie == null)
 			{
 				throw new HttpResponseException(HttpStatusCode.NotFound);
 			}
 
-			_context.Movies.Remove(movie);
-			_context.SaveChanges();
+			bool canDeleteMovie = true;
+
+			if (movie.Rentals.Count > 0)
+			{
+				foreach (var rental in movie.Rentals)
+				{
+					if (canDeleteMovie)
+					{
+						if (rental.DateReturned == null)
+						{
+							canDeleteMovie = false;
+						}
+					}
+				}
+			}
+
+			if (canDeleteMovie)
+			{
+				movie.Deleted = true;
+				_context.SaveChanges();
+			}
+
+			return canDeleteMovie;
 		}
 	}
 }

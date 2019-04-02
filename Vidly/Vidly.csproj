@@ -250,6 +250,10 @@
     <Compile Include="Migrations\201903291418303_AddRentalsToMovie.Designer.cs">
       <DependentUpon>201903291418303_AddRentalsToMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904021035331_AddDeletedPropertyToMovie.cs" />
+    <Compile Include="Migrations\201904021035331_AddDeletedPropertyToMovie.Designer.cs">
+      <DependentUpon>201904021035331_AddDeletedPropertyToMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -613,6 +617,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903291418303_AddRentalsToMovie.resx">
       <DependentUpon>201903291418303_AddRentalsToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021035331_AddDeletedPropertyToMovie.resx">
+      <DependentUpon>201904021035331_AddDeletedPropertyToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

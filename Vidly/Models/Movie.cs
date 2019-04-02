@@ -35,5 +35,7 @@ namespace Vidly.Models
 		public int StockAvailable { get; set; }
 
 		public IList<Rental> Rentals { get; set; }
+
+		public bool Deleted { get; set; }
 	}
 }
