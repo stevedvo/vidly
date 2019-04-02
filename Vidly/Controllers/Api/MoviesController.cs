@@ -24,7 +24,7 @@ namespace Vidly.Controllers.Api
 		//GET /api/movies
 		public IHttpActionResult GetMovies(string query = null, bool? allstock = true)
 		{
-			var moviesQuery = _context.Movies.Include(m => m.Genre).Where(m => m.Deleted == false);
+			var moviesQuery = _context.Movies.Include(m => m.Genre).Include(m => m.Rentals).Where(m => m.Deleted == false);
 
 			if (allstock == false)
 			{

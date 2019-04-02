@@ -49,14 +49,10 @@
 						data   : "rentals",
 						render : function(data)
 						{
-							if (data.length == 0)
-							{
-								return "<button class='btn-link js-delete'>Delete</button>";
-							}
-							else
-							{
-								var canDeleteCustomer = true;
+							var canDeleteCustomer = true;
 
+							if (data.length > 0)
+							{
 								$.each(data, function()
 								{
 									if (canDeleteCustomer)
@@ -67,9 +63,9 @@
 										}
 									}
 								});
-
-								return (canDeleteCustomer ? "<button class='btn-link js-delete'>Delete</button>" : "");
 							}
+
+							return (canDeleteCustomer ? "<button class='btn-link js-delete'>Delete</button>" : "");
 						}
 					}
 				]

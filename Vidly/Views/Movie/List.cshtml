@@ -38,9 +38,9 @@
 				[
 					{
 						data   : "name",
-						render : function (data, type, movie)
+						render : function(data, type, movie)
 						{
-							return "<a href='/Movie/Edit/" + movie.id + "'>" + movie.name + "</a>";
+							return "<a data-movie_id='" + movie.id + "' href='/Movie/Edit/" + movie.id + "'>" + movie.name + "</a>";
 						}
 					},
 					{
@@ -53,18 +53,35 @@
 						data   : "stockAvailable"
 					},
 					{
-						data   : "id",
+						data   : "rentals",
 						render : function (data)
 						{
-							return "<button class='btn-link js-delete' data-movie-id='" + data + "'>Delete</button>";
+							var canDeleteMovie = true;
+
+							if (data.length > 0)
+							{
+								$.each(data, function()
+								{
+									if (canDeleteMovie)
+									{
+										if (this.dateReturned == null)
+										{
+											canDeleteMovie = false;
+										}
+									}
+								});
+							}
+
+							return (canDeleteMovie ? "<button class='btn-link js-delete'>Delete</button>" : "");
 						}
 					}
 				]
 			});
 
-			$("#movies").on("click", ".js-delete", function ()
+			$("#movies").on("click", ".js-delete", function()
 			{
 				var $this = $(this);
+				var movieID = $this.closest("tr").find("a").data("movie_id");
 
 				bootbox.confirm("Are you sure you want to delete this Movie?", function(result)
 				{
@@ -72,17 +89,18 @@
 					{
 						$.ajax(
 						{
-							url     : "/api/movies/" + $this.attr("data-movie-id"),
+							url     : "/api/movies/" + movieID,
 							method  : "DELETE",
 							success : function(result)
 							{
 								if (result)
 								{
 									table.row($this.closest("tr")).remove().draw();
+									toastr.success("Movie successfully deleted.");
 								}
 								else
 								{
-									bootbox.alert("Unable to delete this Movie - are there outstanding rentals?");
+									toastr.error("Unable to delete this Movie - are there outstanding Rentals?");
 								}
 							}
 						});
