@@ -24,5 +24,7 @@ namespace Vidly.DTOs
 		public int StockAvailable { get; set; }
 
 		public GenreDTO Genre { get; set; }
+
+		public IList<RentalDTO> Rentals { get; set; }
 	}
 }

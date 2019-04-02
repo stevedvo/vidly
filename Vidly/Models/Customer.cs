@@ -30,5 +30,7 @@ namespace Vidly.Models
 		public byte MembershipTypeId { get; set; }
 
 		public IList<Rental> Rentals { get; set; }
+
+		public bool Deleted { get; set; }
 	}
 }

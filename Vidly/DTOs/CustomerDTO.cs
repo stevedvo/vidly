@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,5 +24,7 @@ namespace Vidly.DTOs
 		public byte MembershipTypeId { get; set; }
 
 		public MembershipTypeDTO MembershipType { get; set; }
+
+		public IList<RentalDTO> Rentals { get; set; }
 	}
 }
