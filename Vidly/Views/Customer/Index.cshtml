@@ -14,6 +14,7 @@
 		<tr>
 			<th>Customer</th>
 			<th>Membership Type</th>
+			<th>Num. Current Rentals</th>
 			<th>Delete</th>
 		</tr>
 	</thead>
@@ -47,25 +48,16 @@
 					},
 					{
 						data   : "rentals",
+						render : function (data)
+						{
+							return data.length;
+						}
+					},
+					{
+						data   : "rentals",
 						render : function(data)
 						{
-							var canDeleteCustomer = true;
-
-							if (data.length > 0)
-							{
-								$.each(data, function()
-								{
-									if (canDeleteCustomer)
-									{
-										if (this.dateReturned == null)
-										{
-											canDeleteCustomer = false;
-										}
-									}
-								});
-							}
-
-							return (canDeleteCustomer ? "<button class='btn-link js-delete'>Delete</button>" : "");
+							return (data.length == 0 ? "<button class='btn-link js-delete'>Delete</button>" : "");
 						}
 					}
 				]
