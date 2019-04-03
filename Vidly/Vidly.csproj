@@ -215,6 +215,9 @@
     <Compile Include="DTOs\MovieDTO.cs" />
     <Compile Include="DTOs\NewRentalDTO.cs" />
     <Compile Include="DTOs\RentalDTO.cs" />
+    <Compile Include="DTOs\RentalListCustomerDTO.cs" />
+    <Compile Include="DTOs\RentalListDTO.cs" />
+    <Compile Include="DTOs\RentalListMovieDTO.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -586,6 +589,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Rentals\Index.cshtml" />
     <None Include="Web.Testing.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

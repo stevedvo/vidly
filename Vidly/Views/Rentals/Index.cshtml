@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Vidly.Models.Rental>
+
+@{
+	ViewBag.Title = "Rentals";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Rentals</h2>
+
+<a class="btn btn-primary" href="/Rentals/New/">Create New</a>
+
+<table id="rentals" class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>Movie</th>
+			<th>Customer</th>
+			<th>Date Rented</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+
+@section scripts
+{
+	<script>
+		$(document).ready(function()
+		{
+			$("#rentals").DataTable(
+			{
+				ajax :
+				{
+					url     : "/api/rentals",
+					dataSrc : ""
+				},
+				columns :
+				[
+					{
+						data   : "movie",
+						render : function(data)
+						{
+							return "<a href='/Movie/Details/" + data.id + "'>" + data.name + "</a>";
+						}
+					},
+					{
+						data   : "customer",
+						render : function(data)
+						{
+							return "<a href='/Customer/Edit/" + data.id + "'>" + data.name + "</a>";
+						}
+					},
+					{
+						data   : "dateRentedString"
+					}
+				],
+				order :
+				[
+					[2, "asc"]
+				]
+			});
+		});
+	</script>
+}
