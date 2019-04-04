@@ -125,3 +125,9 @@ p.error
 	border-color: #aaa;
 	cursor: not-allowed;
 }
+
+form#newRental .movie-input-container,
+form#newRental .submit-container
+{
+	display: none;
+}
