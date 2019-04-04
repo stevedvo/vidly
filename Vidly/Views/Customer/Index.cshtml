@@ -47,17 +47,13 @@
 						data   : "membershipType.name"
 					},
 					{
-						data   : "rentals",
-						render : function (data)
-						{
-							return data.length;
-						}
+						data   : "currentRentalTotal"
 					},
 					{
-						data   : "rentals",
+						data   : "currentRentalTotal",
 						render : function(data)
 						{
-							return (data.length == 0 ? "<button class='btn-link js-delete'>Delete</button>" : "");
+							return (data == 0 ? "<button class='btn-link js-delete'>Delete</button>" : "");
 						}
 					}
 				]

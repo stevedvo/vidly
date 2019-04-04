@@ -26,5 +26,7 @@ namespace Vidly.DTOs
 		public MembershipTypeDTO MembershipType { get; set; }
 
 		public IList<RentalDTO> Rentals { get; set; }
+
+		public int CurrentRentalTotal { get; set; }
 	}
 }

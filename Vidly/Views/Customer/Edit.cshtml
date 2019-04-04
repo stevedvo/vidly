@@ -83,7 +83,7 @@
 			@foreach (var rental in Model.Customer.Rentals)
 			{
 				<tr data-rental_id="@rental.Id">
-					<td>@rental.Movie.Name</td>
+					<td><a href="/Movie/Details/@rental.Movie.Id">@rental.Movie.Name</a></td>
 					<td>@rental.DateRented.ToString()</td>
 					<td>
 						@if (rental.DateReturned == null)

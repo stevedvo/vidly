@@ -88,7 +88,7 @@
 					viewModel.movieIds = [];
 				});
 
-				numRentals = customer.rentals.length;
+				numRentals = customer.currentRentalTotal;
 
 				if (numRentals < 3)
 				{
@@ -154,19 +154,28 @@
 							method: "post",
 							data: viewModel
 						})
-						.done(function() {
-							toastr.success("Rentals successfully recorded.");
-
-							$("#customer").typeahead("val", "");
-							$("#movie").typeahead("val", "");
-							$("#movies").empty();
-
-							viewModel =
+						.done(function(data)
+						{
+							if (data == "success")
 							{
-								movieIds: []
-							};
+								toastr.success("Rentals successfully recorded.");
+
+								$("#customer").typeahead("val", "");
+								$("#movie").typeahead("val", "");
+								$("#movies").empty();
+
+								viewModel =
+								{
+									movieIds: []
+								};
+							}
+							else if (data == "exceeded")
+							{
+								toastr.error("Cannot save Rental - Customer has exceeded Rental allowance.");
+							}
 						})
-						.fail(function() {
+						.fail(function()
+						{
 							toastr.error("Something went wrong!");
 						});
 					}
