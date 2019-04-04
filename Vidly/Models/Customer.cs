@@ -32,5 +32,20 @@ namespace Vidly.Models
 		public IList<Rental> Rentals { get; set; }
 
 		public bool Deleted { get; set; }
+
+		public int CurrentRentalTotal
+		{
+			get
+			{
+				if (Rentals == null)
+				{
+					Rentals = new List<Rental>();
+				}
+
+				var currentRentalTotal = Rentals.Where(x => x.DateReturned == null).Count();
+
+				return currentRentalTotal;
+			}
+		}
 	}
 }

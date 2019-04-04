@@ -38,7 +38,12 @@ namespace Vidly.Controllers.Api
 				return BadRequest();
 			}
 
-			var customer = _context.Customers.Single(c => c.Id == newRentalDto.CustomerId);
+			var customer = _context.Customers.Include(c => c.Rentals).Single(c => c.Id == newRentalDto.CustomerId);
+
+			if (customer.CurrentRentalTotal + newRentalDto.MovieIds.Count > 3)
+			{
+				return Ok("exceeded");
+			}
 
 			var movies = _context.Movies.Where(m => newRentalDto.MovieIds.Contains(m.Id)).ToList();
 
@@ -63,7 +68,7 @@ namespace Vidly.Controllers.Api
 
 			_context.SaveChanges();
 
-			return Ok();
+			return Ok("success");
 		}
 	}
 }
