@@ -47,5 +47,7 @@ namespace Vidly.Models
 				return currentRentalTotal;
 			}
 		}
+
+		public bool BlackFlag { get; set; }
 	}
 }

@@ -87,6 +87,11 @@ p.error
 	text-align: right;
 }
 
+.dataTables_wrapper#customers_wrapper tr.black-flag
+{
+	background-color: #faa;
+}
+
 .dataTables_wrapper ul.pagination
 {
 	display: inline;

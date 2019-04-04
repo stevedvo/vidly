@@ -262,6 +262,10 @@
     <Compile Include="Migrations\201904021212142_AddDeletedPropertyToCustomer.Designer.cs">
       <DependentUpon>201904021212142_AddDeletedPropertyToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904041609307_AddBlackFlagToCustomer.cs" />
+    <Compile Include="Migrations\201904041609307_AddBlackFlagToCustomer.Designer.cs">
+      <DependentUpon>201904041609307_AddBlackFlagToCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -632,6 +636,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904021212142_AddDeletedPropertyToCustomer.resx">
       <DependentUpon>201904021212142_AddDeletedPropertyToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904041609307_AddBlackFlagToCustomer.resx">
+      <DependentUpon>201904041609307_AddBlackFlagToCustomer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
