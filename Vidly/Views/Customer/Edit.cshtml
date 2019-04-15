@@ -49,6 +49,15 @@
 			</div>
 		</div>
 
+		<div class="form-group">
+			<div class="col-md-10">
+				<div class="checkbox">
+					@Html.EditorFor(model => model.Customer.BlackFlag) @Html.LabelFor(model => model.Customer.BlackFlag, htmlAttributes: new { @class = "control-label col-md-10" })
+					@Html.ValidationMessageFor(model => model.Customer.BlackFlag, "", new { @class = "text-danger" })
+				</div>
+			</div>
+		</div>
+
 		@if (Model.Customer.Deleted)
 		{
 			<div class="form-group">

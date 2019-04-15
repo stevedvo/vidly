@@ -128,6 +128,7 @@ namespace Vidly.Controllers
 				customerInDb.DateOfBirth = customer.DateOfBirth;
 				customerInDb.MembershipTypeId = customer.MembershipTypeId;
 				customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+				customerInDb.BlackFlag = customer.BlackFlag;
 			}
 
 			_context.SaveChanges();
