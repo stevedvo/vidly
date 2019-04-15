@@ -90,15 +90,20 @@
 
 				numRentals = customer.currentRentalTotal;
 
-				if (numRentals < 3)
+				if (customer.blackFlag)
 				{
-					viewModel.customerId = customer.id;
-					$("form#newRental .movie-input-container, form#newRental ul#movies, form#newRental .submit-container").slideDown();
+					$("form#newRental .movie-input-container").slideUp();
+					toastr.error("Customer is Black Flagged! Click <a href='/Customer/Edit/"+customer.id+"'>here</a> to view.");
+				}
+				else if (numRentals >= 3)
+				{
+					$("form#newRental .movie-input-container").slideUp();
+					toastr.error("Customer already has maximum number of Rentals.  Click <a href='/Customer/Edit/" + customer.id +"'>here</a> to view.");
 				}
 				else
 				{
-					$("form#newRental .movie-input-container").slideUp();
-					toastr.error("Customer already has maximum number of Rentals");
+					viewModel.customerId = customer.id;
+					$("form#newRental .movie-input-container, form#newRental ul#movies, form#newRental .submit-container").slideDown();
 				}
 			});
 
