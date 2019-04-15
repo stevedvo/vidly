@@ -56,7 +56,14 @@
 							return (data == 0 ? "<button class='btn-link js-delete'>Delete</button>" : "");
 						}
 					}
-				]
+				],
+				createdRow : function(row, data)
+				{
+					if (data.blackFlag)
+					{
+						$(row).addClass("black-flag");
+					}
+				}
 			});
 
 			$("#customers").on("click", ".js-delete", function()

@@ -28,5 +28,7 @@ namespace Vidly.DTOs
 		public IList<RentalDTO> Rentals { get; set; }
 
 		public int CurrentRentalTotal { get; set; }
+
+		public bool BlackFlag { get; set; }
 	}
 }

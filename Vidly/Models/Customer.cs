@@ -47,5 +47,8 @@ namespace Vidly.Models
 				return currentRentalTotal;
 			}
 		}
+
+		[Display(Name = "Black Flagged")]
+		public bool BlackFlag { get; set; }
 	}
 }
